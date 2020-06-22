@@ -1,0 +1,25 @@
+<div *ngIf="loading">
+  <img src="assets/images/loading_giphy2.gif" class="loader-alignment">
+</div>
+<div *ngIf="error">
+  Error :(
+</div>
+<ng-container *ngIf="!loading">
+  <div class="container fluid">
+    <div class="page-header header-style">
+      <h2>Github Public Repository Lists</h2>
+    </div>
+    <div *ngFor="let edge of edges; index as i">
+      <div class="card" style="width: 100%; margin-top: 10px; cursor: pointer">
+        <div class="card-body custom-shadow" (click)="gotoDetailView(edge.node.name, edge.node.owner.login) ">
+          <h5 class="card-title" style="color:#cc3f3f">{{i+1}}. {{edge.node.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Created Date: {{edge.node.createdAt | date}}</h6>
+          <p class="card-text mb-0">Description: {{edge.node.description}}</p>
+          <p class="card-text">Stars: {{edge.node.stargazers.totalCount}} <i class="fa fa-star"></i>'s</p>
+          <a href="{{edge.node.url}}" target="_blank" class="card-link" (click)="linkClick()">Go to repository ...</a>
+        </div>
+      </div>
+    </div>
+    <a (click)="fetchMore()" *ngIf="!loading" href="#">Load more</a>
+  </div>
+</ng-container>

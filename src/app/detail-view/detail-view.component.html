@@ -1,0 +1,18 @@
+<div class="container fluid">
+  <div class="page-header header-style">
+    <h2>Lists of Contributors for {{repo}} <span *ngIf="contributorList.length">({{contributorList.length}})</span></h2>
+  </div>
+  <div class="cards">
+    <div *ngFor="let contributor of contributorList">
+      <!-- <div class="cards">  -->
+        <div class="card" style="width: 100%; margin-top: 10px; cursor: pointer" id="all-cards">
+          <div class="card-body custom-shadow" (click)="goToLink(contributor.accName)"> 
+            <img [src]="contributor.img"alt="Profile Image" width="50px">
+            <h5 class="custom-name">{{contributor.owner}}</h5>
+          </div>
+        </div>
+      <!-- </div> -->
+    </div>
+  </div>
+  
+</div>
